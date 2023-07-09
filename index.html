@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <style>
+    .calculator {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1 class="text-center">Calculator</h1>
+    <div class="display">
+      <input type="text" class="form-control" id="calc-display" readonly>
+    </div>
+    <div class="row gx-1">
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('(')"> ( </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay(')')"> ) </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('%')"> % </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="clearDisplay()"> AC </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('7')"> 7 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('8')"> 8 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('9')"> 9 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('/')"> ÷ </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('4')"> 4 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('5')"> 5 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('6')"> 6 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('*')"> × </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('1')"> 1 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('2')"> 2 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('3')"> 3 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('-')"> - </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('0')"> 0 </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light```html
+w-100 mt-2 border" onclick="updateDisplay('.')"> . </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-primary w-100 mt-2 border border-primary" onclick="calculate()"> = </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('+')"> + </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('sin(')"> sin </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('ln(')"> ln </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('Math.PI')"> π </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('cos(')"> cos </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('log(')"> log </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('Math.E')"> e </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('tan(')"> tan </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('Math.sqrt(')"> √ </button>
+      </div>
+
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('EXP')"> EXP </button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="updateDisplay('Math.pow(')"> X^Y </button>
+      </div>
+      
+      <div class="col-3">
+        <button type="button" class="btn btn-light w-100 mt-2 border" onclick="calculateFactorial()"> x! </button>
+      </div>
+    </div>
+  </div>
+ <script>
+    let isExponentMode = false;
+
+    function updateDisplay(value) {
+      const display = document.getElementById('calc-display');
+      const currentValue = display.value;
+
+      if (value === '=') {
+        calculate();
+        return;
+      }
+
+      if (value === 'sin(' || value === 'cos(' || value === 'tan(' || value === 'log(' || value === 'ln(' || value === 'Math.sqrt(') {
+        display.value = currentValue + value;
+      } else if (value === 'Math.PI') {
+        display.value = currentValue + Math.PI;
+      } else if (value === 'Math.E') {
+        display.value = currentValue + Math.E;
+      } else if (value === '%') {
+        const result = parseFloat(currentValue) / 100;
+        display.value = result.toString();
+      } else if (value === 'EXP') {
+        display.value = currentValue + 'E';
+      } else if (value === 'Math.pow(') {
+        display.value = currentValue + '^';
+        isExponentMode = true;
+      } else if (isExponentMode) {
+        display.value = currentValue + value;
+      } else {
+        display.value = currentValue + value;
+      }
+    }
+
+    function clearDisplay() {
+      document.getElementById('calc-display').value = '';
+      isExponentMode = false;
+    }
+
+    function calculate() {
+      const display = document.getElementById('calc-display');
+      let expression = display.value;
+
+      // Replace special function names with their corresponding JavaScript functions
+      expression = expression.replace(/sin\(/g, 'Math.sin(');
+      expression = expression.replace(/cos\(/g, 'Math.cos(');
+      expression = expression.replace(/tan\(/g, 'Math.tan(');
+      expression = expression.replace(/log\(/g, 'Math.log10(');
+      expression = expression.replace(/ln\(/g, 'Math.log(');
+      expression = expression.replace(/Math.sqrt\(/g, 'Math.sqrt(');
+  
+      let result;
+  
+      try {
+        if (expression.includes('^')) {
+          const parts = expression.split('^');
+          if (parts.length === 2) {
+            const base = parseFloat(parts[0]);
+            const exponent = parseFloat(parts[1]);
+            if (!isNaN(base) && !isNaN(exponent)) {
+              result = Math.pow(base, exponent);
+            } else {
+              throw new Error('Invalid exponent');
+            }
+          } else {
+            throw new Error('Invalid expression');
+          }
+        } else {
+          result = eval(expression);
+        }
+      } catch (error) {
+        result = 'Error';
+      }
+  
+      display.value = result;
+      isExponentMode = false;
+    }
+    
+    function calculateFactorial() {
+      const display = document.getElementById('calc-display');
+      const value = parseFloat(display.value);
+
+      if (Number.isInteger(value) && value >= 0) {
+        let result = 1;
+        for (let i = 2; i <= value; i++) {
+          result *= i;
+        }
+        display.value = result;
+      } else {
+        display.value = 'Error';
+      }
+      isExponentMode = false;
+    }
+  </script>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
